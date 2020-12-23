@@ -1,10 +1,17 @@
 <script>
-import { fade } from 'svelte/transition';
-
-    import api from './api'
+import api from './api'
     let row=api;
-    let Header = ["id","time","qrCode","name","comment","autoEntry","buildingId","address","category","vehicleNumber","validTill","imageUploaded","reference","active","mobile","contractorId","contractorName","idProof","imageData","gender","updatedOn","createdOn","createdBy","updatedBy","workerProfileVersion","contractorProfileVersion","sequence","categoryname","designationName","categoryId","designationId","fatherName","dob","faceTemplateUploaded","faceTemplate","templateCreateDate","relation","martialStatus","aadharNo","activationDate","pf","uan","prefix","haveEmpId","phoneImage","projectId","stateId","stateName","pinCode","permanentAddress","displayName","projectAddress","projectDisplayName"];
-    </script>
+    let value=" "
+    let Header='';
+    row.forEach((o) => {  
+for (var peopleName in o) {
+   Header+=peopleName ;
+}});
+    function handleClick() {
+    alert(value);
+    }
+
+  </script>
     
     <!-- svelte-ignore component-name-lowercase -->  
     <div class="header">
@@ -14,12 +21,18 @@ import { fade } from 'svelte/transition';
                 <table>
                     <thead>
                         <tr>
-                          {#each Header as header}
-                            <th>{header}</th>
-                          {/each}
+                          
+                          <th>{Header}</th>
+                                        
+                       
+                        
+                            
                         </tr>
+                        
+                           
                       </thead>
                     <tbody>
+                       <tr>
                         {#each row as item}
                         <tr>
                           <td> {item.id }</td>
@@ -76,10 +89,20 @@ import { fade } from 'svelte/transition';
                           <td>{item.projectAddress}</td>
                           <td> {item. projectDisplayName} </td>
                           </tr>
-                        {/each}
+                        {/each}</tr>
                 </tbody>
                 </table>
-            </div>
+                
+                </div>
+                <select bind:value>
+                  {#each row as item}
+                    <option value={item.id}>{item.id}</option> 
+                  {/each}
+                </select>
+                <button  on:click={handleClick}>
+                  Click me
+                </button>
+          
           <!-- svelte-ignore a11y-missing-attribute -->
           <html>
           <style>
