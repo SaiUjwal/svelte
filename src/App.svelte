@@ -2,10 +2,22 @@
   import api from "./api.js";
   console.log(api);
   let keys = Object.keys(api[0]);
-  let firstRow = Object.values(api[0]);
+
+  function getIn() {
+    alert(
+      "row" +
+        this.closest("tr").rowIndex +
+        "      column" +
+        (this.closest("td").cellIndex + 1)
+    );
+  }
 </script>
 
 <style>
+  td:hover {
+    background-color: rgb(128, 231, 231);
+    cursor: pointer;
+  }
   #biodata {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
@@ -45,7 +57,7 @@
     {#each api as row}
       <tr>
         {#each Object.values(row) as cell}
-          <td>{cell}</td>
+          <td on:click={getIn}>{cell}</td>
         {/each}
       </tr>
     {/each}
