@@ -8,25 +8,12 @@
       "row" +
         this.closest("tr").rowIndex +
         "      column" +
-        (this.closest("td").cellIndex + 1)
+        (this.closest("td").cellIndex )
     );
   }
   function getDetails() {
-    data1.onclick = function () {
-      alert(Object.values(api[0]));
-    };
-    data2.onclick = function () {
-      alert(Object.values(api[1]));
-    };
-    data3.onclick = function () {
-      alert(Object.values(api[2]));
-    };
-    data4.onclick = function () {
-      alert(Object.values(api[3]));
-    };
-    data5.onclick = function () {
-      alert(Object.values(api[4]));
-    };
+    console.log(this,  this.closest("tr").rowIndex,  this.closest("td").cellIndex)
+    alert(JSON.stringify(api[this.closest("tr").rowIndex-1])) 
   }
 </script>
 
@@ -62,27 +49,32 @@
     background-color: #4caf50;
     color: white;
   }
+
+  .btn {
+    background-color: #4caf50;
+  } 
 </style>
 
 <div>
   <table id="biodata">
     <tr>
+      <th>Details</th>
       {#each keys as key}
         <th>{key}</th>
       {/each}
-      <th>Details</th>
+      
     </tr>
-    {#each api as row}
+    {#each api as row, i}
       <tr>
+        <td><button class="btn" id="data1" on:click={getDetails}>{i+1} row</button></td>
         {#each Object.values(row) as cell}
+        
           <td on:click={getIn}>{cell}</td>
         {/each}
+        <td>
+          
+        </td>
       </tr>
     {/each}
   </table>
-  <button id="data1" on:click={getDetails}>first row</button>
-  <button id="data2" on:click={getDetails}>second row</button>
-  <button id="data3" on:click={getDetails}>third row</button>
-  <button id="data4" on:click={getDetails}>fourth row</button>
-  <button id="data5" on:click={getDetails}>fifth row</button>
 </div>
