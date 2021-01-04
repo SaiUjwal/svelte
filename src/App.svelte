@@ -11,11 +11,28 @@
         (this.closest("td").cellIndex + 1)
     );
   }
+  function getDetails() {
+    data1.onclick = function () {
+      alert(Object.values(api[0]));
+    };
+    data2.onclick = function () {
+      alert(Object.values(api[1]));
+    };
+    data3.onclick = function () {
+      alert(Object.values(api[2]));
+    };
+    data4.onclick = function () {
+      alert(Object.values(api[3]));
+    };
+    data5.onclick = function () {
+      alert(Object.values(api[4]));
+    };
+  }
 </script>
 
 <style>
   td:hover {
-    background-color: rgb(128, 231, 231);
+    background-color: rgb(125, 233, 233);
     cursor: pointer;
   }
   #biodata {
@@ -53,6 +70,7 @@
       {#each keys as key}
         <th>{key}</th>
       {/each}
+      <th>Details</th>
     </tr>
     {#each api as row}
       <tr>
@@ -62,4 +80,9 @@
       </tr>
     {/each}
   </table>
+  <button id="data1" on:click={getDetails}>first row</button>
+  <button id="data2" on:click={getDetails}>second row</button>
+  <button id="data3" on:click={getDetails}>third row</button>
+  <button id="data4" on:click={getDetails}>fourth row</button>
+  <button id="data5" on:click={getDetails}>fifth row</button>
 </div>
