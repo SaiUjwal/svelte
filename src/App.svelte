@@ -8,12 +8,16 @@
       "row" +
         this.closest("tr").rowIndex +
         "      column" +
-        (this.closest("td").cellIndex )
+        this.closest("td").cellIndex
     );
   }
   function getDetails() {
-    console.log(this,  this.closest("tr").rowIndex,  this.closest("td").cellIndex)
-    alert(JSON.stringify(api[this.closest("tr").rowIndex-1])) 
+    console.log(
+      this,
+      this.closest("tr").rowIndex,
+      this.closest("td").cellIndex
+    );
+    alert(JSON.stringify(api[this.closest("tr").rowIndex - 1]));
   }
 </script>
 
@@ -26,6 +30,8 @@
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
+    overflow: auto;
+    display: block;
   }
 
   #biodata td,
@@ -52,7 +58,7 @@
 
   .btn {
     background-color: #4caf50;
-  } 
+  }
 </style>
 
 <div>
@@ -62,18 +68,17 @@
       {#each keys as key}
         <th>{key}</th>
       {/each}
-      
     </tr>
     {#each api as row, i}
       <tr>
-        <td><button class="btn" id="data1" on:click={getDetails}>{i+1} row</button></td>
+        <td>
+          <button class="btn" id="data1" on:click={getDetails}>{i + 1}
+            row</button>
+        </td>
         {#each Object.values(row) as cell}
-        
           <td on:click={getIn}>{cell}</td>
         {/each}
-        <td>
-          
-        </td>
+        <td/>
       </tr>
     {/each}
   </table>
